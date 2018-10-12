@@ -157,10 +157,16 @@ export class SubAuthenticatePath {
         return 'OK';
     }
 
-    @GET
+    @POST
     @Path('profile', true)
     test2( ): JwtUser {
         return this.context.request.user;
+    }
+
+    @GET
+    @Path('profile')
+    test3( ): string {
+        return 'OK';
     }
 }
 

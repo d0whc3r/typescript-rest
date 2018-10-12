@@ -241,14 +241,14 @@ describe('Server Tests', () => {
             });
         });
         it('should not authorize without header', (done) => {
-            request('http://localhost:5674/subauthorization/profile', function (error, response, body) {
+            request.post('http://localhost:5674/subauthorization/profile', function (error, response, body) {
                 expect(response.statusCode).to.eq(401);
                 expect(body).to.eq('Unauthorized');
                 done();
             });
         });
         it('should not authorize with wrong token', (done) => {
-            request('http://localhost:5674/subauthorization/profile', {
+            request.post('http://localhost:5674/subauthorization/profile', {
                 headers: {
                     'Authorization': 'Bearer xx'
                 }
@@ -259,13 +259,20 @@ describe('Server Tests', () => {
             });
         });
         it('should authorize with header', (done) => {
-            request('http://localhost:5674/subauthorization/profile', {
+            request.post('http://localhost:5674/subauthorization/profile', {
                 headers: {
                     'Authorization': `Bearer ${generateJwt()}`
                 }
             }, function (error, response, body) {
                 expect(response.statusCode).to.eq(200);
                 expect(JSON.parse(body)).to.contain({ username: 'admin' });
+                done();
+            });
+        });
+        it('should authorize in GET method', (done) => {
+            request('http://localhost:5674/subauthorization/profile', function (error, response, body) {
+                expect(response.statusCode).to.eq(200);
+                expect(body).to.eq('OK');
                 done();
             });
         });
