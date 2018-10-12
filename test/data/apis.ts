@@ -11,7 +11,6 @@ import {Path, Server, GET, POST, PUT, DELETE,
         ContextResponse, ContextLanguage, ContextAccept,
         ContextNext, AcceptLanguage, Accept, FileParam,
         Errors, Return, BodyOptions, Abstract, Preprocessor} from '../../src/typescript-rest';
-import { JwtUser } from "../unit/test.spec";
 
 Server.useIoC();
 
@@ -135,40 +134,6 @@ export class MyIoCService3 {
 export class MyIoCService4 extends MyIoCService2 {
 }
 
-@Path('authorization', true)
-export class AuthenticatePath {
-    @Context
-    context: ServiceContext;
-
-    @GET
-    test( ): JwtUser {
-        return this.context.request.user;
-    }
-}
-
-@Path('subauthorization')
-export class SubAuthenticatePath {
-    @Context
-    context: ServiceContext;
-
-    @GET
-    @Path('public')
-    test( ): string {
-        return 'OK';
-    }
-
-    @POST
-    @Path('profile', true)
-    test2( ): JwtUser {
-        return this.context.request.user;
-    }
-
-    @GET
-    @Path('profile')
-    test3( ): string {
-        return 'OK';
-    }
-}
 
 @Path('mypath')
 export class MyService {

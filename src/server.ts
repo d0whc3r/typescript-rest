@@ -22,13 +22,6 @@ export class Server {
     }
 
     /**
-     * Define passportAuth strategy
-     */
-    static passportAuth(strategy: string) {
-        InternalServer.passportAuth(strategy);
-    }
-
-    /**
      * An alias for Server.loadServices()
      */
     static loadControllers(router: express.Router, patterns: string | Array<string>, baseDir?: string) {
@@ -156,7 +149,7 @@ export class Server {
      * @param filter The filter function
      */
     static setFileFilter(filter: (req: Express.Request, file: Express.Multer.File,
-                                  callback: (error: Error, acceptFile: boolean) => void) => void) {
+        callback: (error: Error, acceptFile: boolean) => void) => void) {
         InternalServer.fileFilter = filter;
     }
 

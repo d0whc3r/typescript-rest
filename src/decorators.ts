@@ -9,12 +9,11 @@ import * as _ from 'lodash';
 /**
  * A decorator to tell the [[Server]] that a class or a method
  * should be bound to a given path.
- * Auth option using passport
  *
  * For example:
  *
  * ```
- * @ Path('people', auth: boolean)
+ * @ Path('people')
  * class PeopleService {
  *   @ PUT
  *   @ Path(':id')
@@ -37,13 +36,13 @@ import * as _ from 'lodash';
  * GET http://mydomain/people/123
  * ```
  */
-export function Path(path: string, auth: boolean = false) {
+export function Path(path: string) {
     return function (...args: any[]) {
         args = _.without(args, undefined);
         if (args.length === 1) {
-            return PathTypeDecorator.apply(this, [args[0], path, auth]);
+            return PathTypeDecorator.apply(this, [args[0], path]);
         } else if (args.length === 3 && typeof args[2] === 'object') {
-            return PathMethodDecorator.apply(this, [args[0], args[1], args[2], path, auth]);
+            return PathMethodDecorator.apply(this, [args[0], args[1], args[2], path]);
         }
 
         throw new Error('Invalid @Path Decorator declaration.');
@@ -893,11 +892,10 @@ function AcceptMethodDecorator(target: any, propertyKey: string,
 /**
  * Decorator processor for [[Path]] decorator on classes
  */
-function PathTypeDecorator(target: Function, path: string, auth: boolean) {
+function PathTypeDecorator(target: Function, path: string) {
     const classData: metadata.ServiceClass = InternalServer.registerServiceClass(target);
     if (classData) {
         classData.path = path;
-        classData.auth = auth;
     }
 }
 
@@ -905,11 +903,10 @@ function PathTypeDecorator(target: Function, path: string, auth: boolean) {
  * Decorator processor for [[Path]] decorator on methods
  */
 function PathMethodDecorator(target: any, propertyKey: string,
-    descriptor: PropertyDescriptor, path: string, auth: boolean) {
+    descriptor: PropertyDescriptor, path: string) {
     const serviceMethod: metadata.ServiceMethod = InternalServer.registerServiceMethod(target.constructor, propertyKey);
     if (serviceMethod) { // does not intercept constructor
         serviceMethod.path = path;
-        serviceMethod.auth = auth;
     }
 }
 
