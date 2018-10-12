@@ -24,6 +24,7 @@ export class ServiceClass {
 
     targetClass: any;
     path: string;
+    auth: boolean = false;
     processors: Array<PreprocessorFunction>;
     methods: Map<string, ServiceMethod>;
     languages: Array<string>;
@@ -46,6 +47,7 @@ export class ServiceClass {
 export class ServiceMethod {
     name: string;
     path: string;
+    auth: boolean = false;
     resolvedPath: string;
     httpMethod: HttpMethod;
     parameters: Array<MethodParam> = new Array<MethodParam>();
