@@ -1,6 +1,6 @@
 {
-  "name": "typescript-rest",
-  "version": "1.7.0",
+  "name": "typescript.rest",
+  "version": "1.8.0",
   "description": "A Library to create RESTFul APIs with Typescript",
   "author": "Thiago da Rosa de Bustamante <thiago@cruxframework.org>",
   "keywords": [
@@ -95,10 +95,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/thiagobustamante/typescript-rest.git"
+    "url": "https://github.com/d0whc3r/typescript-rest.git"
   },
   "bugs": {
-    "url": "https://github.com/thiagobustamante/typescript-rest/issues"
+    "url": "https://github.com/d0whc3r/typescript-rest/issues"
   },
   "directories": {
     "lib": "dist",

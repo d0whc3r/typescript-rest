@@ -11,3 +11,5 @@ tsconfig.json
 tsfmt.json
 tslint.json
 test
+.idea
+*.iml
