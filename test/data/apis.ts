@@ -6,11 +6,14 @@ import * as fs from 'fs';
 import * as _ from 'lodash';
 
 import {Path, Server, GET, POST, PUT, DELETE,
-        PathParam, QueryParam, CookieParam, HeaderParam,
-        FormParam, Param, Context, ServiceContext, ContextRequest,
-        ContextResponse, ContextLanguage, ContextAccept,
-        ContextNext, AcceptLanguage, Accept, FileParam,
-        Errors, Return, BodyOptions, Abstract, Preprocessor} from '../../src/typescript-rest';
+    PathParam, QueryParam, CookieParam, HeaderParam,
+    FormParam, Param, Context, ServiceContext, ContextRequest,
+    ContextResponse, ContextLanguage, ContextAccept,
+    ContextNext, AcceptLanguage, Accept, FileParam,
+    Errors, Return, BodyOptions, Abstract, Preprocessor, Security,
+    GETMapping, PUTMapping, DELETEMapping, POSTMapping,
+    HEADMapping, OPTIONSMapping, PATCHMapping} from '../../src/typescript-rest';
+import {JwtUser} from "../unit/test.spec";
 
 Server.useIoC();
 
@@ -34,8 +37,7 @@ export abstract class BaseApi {
     @Context
     context: ServiceContext;
 
-    @GET
-    @Path(':id')
+    @GETMapping(':id')
     testCrudGet(@PathParam('id') id: string) {
         if (context) {
             return 'OK_'+id;
@@ -43,8 +45,7 @@ export abstract class BaseApi {
         return 'false';
     }
 
-    @GET
-    @Path('overload/:id')
+    @GETMapping('overload/:id')
     testOverloadGet(@PathParam('id') id: string) {
         if (context) {
             return 'OK_'+id;
@@ -52,8 +53,7 @@ export abstract class BaseApi {
         return 'false';
     }
 
-    @PUT
-    @Path('overload/:id')
+    @PUTMapping('overload/:id')
     testOverloadPut(@PathParam('id') id: string) {
         if (context) {
             return 'OK_'+id;
@@ -160,6 +160,16 @@ export class MyService2 {
     @DELETE
     @Path('secondpath')
     testDelete( ): string {
+        return 'OK';
+    }
+
+    @GETMapping('thirdpath')
+    test2( ): string {
+        return 'OK';
+    }
+
+    @DELETEMapping('thirdpath')
+    testDelete2( ): string {
         return 'OK';
     }
 }
@@ -331,8 +341,7 @@ export class AcceptTest {
     }
 
 
-    @POST
-    @Path('conflict')
+    @POSTMapping('conflict')
     testConflictAsync(): Promise<string> {
         return new Promise<string>(function(resolve, reject){
             throw new Errors.ConflictError('test of conflict');
@@ -527,6 +536,98 @@ export class MyPreprocessedService {
     @Preprocessor(asyncValidator2) // multiple preprocessors needed to test async
     asynctest(body: any) {
         return this.request.validated
+    }
+}
+
+@Path('authorization')
+@Security()
+export class AuthenticatePath {
+    @Context
+    context: ServiceContext;
+
+    @GET
+    test( ): JwtUser {
+        return this.context.request.user;
+    }
+}
+
+@Path('admin')
+@Security('ROLE_ADMIN')
+export class AuthenticateAdminPath {
+    @Context
+    context: ServiceContext;
+
+    @GET
+    test( ): JwtUser {
+        return this.context.request.user;
+    }
+}
+
+@Path('xadmin')
+@Security('ROLE_NOT_EXISTING')
+export class AuthenticateXAdminPath {
+    @Context
+    context: ServiceContext;
+
+    @GET
+    test( ): JwtUser {
+        return this.context.request.user;
+    }
+}
+
+@Path('subauthorization')
+export class SubAuthenticatePath {
+    @Context
+    context: ServiceContext;
+
+    @GET
+    @Path('public')
+    test( ): string {
+        return 'OK';
+    }
+
+    @POST
+    @Path('profile')
+    @Security(['ROLE_ADMIN', 'ROLE_USER'])
+    test3( ): JwtUser {
+        return this.context.request.user;
+    }
+
+    @GET
+    @Path('profile')
+    test2( ): string {
+        return 'OK';
+    }
+
+    @PUT
+    @Path('profile')
+    @Security('ROLE_NOT_EXISTING')
+    test4( ): JwtUser {
+        return this.context.request.user;
+    }
+}
+
+@Path('heads')
+export class HeadsPath {
+    @HEADMapping()
+    test(): string {
+        return 'OK';
+    }
+}
+
+@Path('options')
+export class OptionsPath {
+    @OPTIONSMapping()
+    test(): string {
+        return 'OK';
+    }
+}
+
+@Path('patch')
+export class PatchPath {
+    @PATCHMapping()
+    test(): string {
+        return 'OK';
     }
 }
 
