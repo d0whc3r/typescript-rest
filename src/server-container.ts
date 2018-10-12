@@ -7,6 +7,7 @@ import * as multer from 'multer';
 import * as metadata from './metadata';
 import * as Errors from './server-errors';
 import * as _ from 'lodash';
+import * as passport from 'passport';
 
 import { HttpMethod, ServiceContext, ReferencedResource, ServiceFactory, FileLimits } from './server-types';
 import { DownloadResource, DownloadBinaryData } from './server-return';
@@ -29,12 +30,17 @@ export class InternalServer {
             return <FunctionConstructor>serviceClass;
         }
     };
+    static passportStrategy: string;
 
     router: express.Router;
     upload: multer.Instance;
 
     constructor(router: express.Router) {
         this.router = router;
+    }
+
+    static passportAuth(strategy: string) {
+        InternalServer.passportStrategy = strategy;
     }
 
     static registerServiceClass(target: Function): metadata.ServiceClass {
@@ -135,6 +141,9 @@ export class InternalServer {
 
         const middleware: Array<express.RequestHandler> = this.buildServiceMiddleware(serviceMethod);
         let args: any[] = [serviceMethod.resolvedPath];
+        if (InternalServer.passportStrategy && (serviceClass.auth || serviceMethod.auth)) {
+            args = [...args, passport.authenticate(InternalServer.passportStrategy)];
+        }
         args = args.concat(middleware);
         args.push(handler);
         switch (serviceMethod.httpMethod) {
