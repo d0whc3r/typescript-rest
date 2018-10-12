@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/typescript-rest.svg)](https://badge.fury.io/js/typescript-rest)
+[![npm version](https://badge.fury.io/js/%40d0whc3r%2Ftypescript-rest.svg)](https://badge.fury.io/js/%40d0whc3r%2Ftypescript-rest)
 [![Build Status](https://travis-ci.org/d0whc3r/typescript-rest.svg?branch=master)](https://travis-ci.org/d0whc3r/typescript-rest)
 [![Coverage Status](https://coveralls.io/repos/github/d0whc3r/typescript-rest/badge.svg?branch=master)](https://coveralls.io/github/d0whc3r/typescript-rest?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/d0whc3r/typescript-rest/badge.svg?targetFile=package.json)](https://snyk.io/test/github/d0whc3r/typescript-rest?targetFile=package.json)
