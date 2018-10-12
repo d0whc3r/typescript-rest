@@ -37,7 +37,7 @@ import * as _ from 'lodash';
  * ```
  */
 export function Path(path: string) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         if (args.length === 1) {
             return PathTypeDecorator.apply(this, [args[0], path]);
@@ -128,7 +128,7 @@ export function Security(roles: string | string[] = ['*']) {
  * ```
  */
 export function Preprocessor(preprocessor: Function) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         if (args.length === 1) {
             return PreprocessorTypeDecorator.apply(this, [args[0], preprocessor]);
@@ -161,7 +161,7 @@ export function Preprocessor(preprocessor: Function) {
  * If the language requested is not supported, a status code 406 returned
  */
 export function AcceptLanguage(...languages: string[]) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         if (args.length === 1) {
             return AcceptLanguageTypeDecorator.apply(this, [args[0], languages]);
@@ -194,7 +194,7 @@ export function AcceptLanguage(...languages: string[]) {
  * If the mime type requested is not supported, a status code 406 returned
  */
 export function Accept(...accepts: string[]) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         if (args.length === 1) {
             return AcceptTypeDecorator.apply(this, [args[0], accepts]);
@@ -822,7 +822,7 @@ export function PATCHMapping(path: string = '/') {
  * [[bodyParser]](https://www.npmjs.com/package/body-parser)
  */
 export function BodyOptions(options: any) {
-    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
         const serviceMethod: metadata.ServiceMethod = InternalServer.registerServiceMethod(target.constructor, propertyKey);
         if (serviceMethod) { // does not intercept constructor
             serviceMethod.bodyParserOptions = options;
@@ -856,7 +856,7 @@ export function BodyOptions(options: any) {
  * And pass 123 as the id argument on getPerson method's call.
  */
 export function PathParam(name: string) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         const newArgs = args.concat([metadata.ParamType.path, name]);
         if (args.length < 3 || typeof args[2] === 'undefined') {
@@ -892,7 +892,7 @@ export function PathParam(name: string) {
  * argument on addAvatar method's call.
  */
 export function FileParam(name: string) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         const newArgs = args.concat([metadata.ParamType.file, name]);
         if (args.length < 3 || typeof args[2] === 'undefined') {
@@ -928,7 +928,7 @@ export function FileParam(name: string) {
  * argument on addAvatar method's call.
  */
 export function FilesParam(name: string) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         const newArgs = args.concat([metadata.ParamType.files, name]);
         if (args.length < 3 || typeof args[2] === 'undefined') {
@@ -966,7 +966,7 @@ export function FilesParam(name: string) {
  * And pass 'joe' as the name argument on getPerson method's call.
  */
 export function QueryParam(name: string) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         const newArgs = args.concat([metadata.ParamType.query, name]);
         if (args.length < 3 || typeof args[2] === 'undefined') {
@@ -999,7 +999,7 @@ export function QueryParam(name: string) {
  * header called 'header' to the header argument on getPerson method's call.
  */
 export function HeaderParam(name: string) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         const newArgs = args.concat([metadata.ParamType.header, name]);
         if (args.length < 3 || typeof args[2] === 'undefined') {
@@ -1032,7 +1032,7 @@ export function HeaderParam(name: string) {
  * cookie called 'cookie' to the cookie argument on getPerson method's call.
  */
 export function CookieParam(name: string) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         const newArgs = args.concat([metadata.ParamType.cookie, name]);
         if (args.length < 3 || typeof args[2] === 'undefined') {
@@ -1066,7 +1066,7 @@ export function CookieParam(name: string) {
  * method's call.
  */
 export function FormParam(name: string) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         const newArgs = args.concat([metadata.ParamType.form, name]);
         if (args.length < 3 || typeof args[2] === 'undefined') {
@@ -1101,7 +1101,7 @@ export function FormParam(name: string) {
  * received in the current request.
  */
 export function Param(name: string) {
-    return function (...args: any[]) {
+    return function(...args: any[]) {
         args = _.without(args, undefined);
         const newArgs = args.concat([metadata.ParamType.param, name]);
         if (args.length < 3 || typeof args[2] === 'undefined') {
