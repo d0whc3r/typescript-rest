@@ -63,9 +63,9 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<p><a href="https://badge.fury.io/js/typescript-rest"><img src="https://badge.fury.io/js/typescript-rest.svg" alt="npm version"></a>
-					<a href="https://travis-ci.org/thiagobustamante/typescript-rest"><img src="https://travis-ci.org/thiagobustamante/typescript-rest.svg?branch=master" alt="Build Status"></a>
-					<a href="https://coveralls.io/github/thiagobustamante/typescript-rest?branch=master"><img src="https://coveralls.io/repos/github/thiagobustamante/typescript-rest/badge.svg?branch=master" alt="Coverage Status"></a>
-				<a href="https://snyk.io/test/github/thiagobustamante/typescript-rest?targetFile=package.json"><img src="https://snyk.io/test/github/thiagobustamante/typescript-rest/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a></p>
+					<a href="https://travis-ci.org/d0whc3r/typescript-rest"><img src="https://travis-ci.org/d0whc3r/typescript-rest.svg?branch=master" alt="Build Status"></a>
+					<a href="https://coveralls.io/github/d0whc3r/typescript-rest?branch=master"><img src="https://coveralls.io/repos/github/d0whc3r/typescript-rest/badge.svg?branch=master" alt="Coverage Status"></a>
+				<a href="https://snyk.io/test/github/d0whc3r/typescript-rest?targetFile=package.json"><img src="https://snyk.io/test/github/d0whc3r/typescript-rest/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a></p>
 				<h1 id="rest-services-for-typescript">REST Services for Typescript</h1>
 				<p>This is a lightweight annotation-based <a href="http://expressjs.com/">expressjs</a> extension for typescript.</p>
 				<p>It can be used to define your APIs using ES7 decorators.</p>
@@ -799,7 +799,7 @@ test(myObject: MyClass): <span class="hljs-built_in">void</span> {
     <span class="hljs-keyword">super</span>(<span class="hljs-string">"MyOwnError"</span>, MyOwnError.myNoSenseStatusCode, message);
   }
 }</code></pre>
-				<p>You must remember that all uncaught errors are handled by a expressjs <a href="http://expressjs.com/en/guide/error-handling.html#the-default-error-handler">error handler</a>. You could want to customize it to allow you to inform how the errors will be delivered to your users. For more on this (for those who wants, for example, to send JSON errors), take a look at <a href="https://github.com/thiagobustamante/typescript-rest/issues/16">this question</a>;</p>
+				<p>You must remember that all uncaught errors are handled by a expressjs <a href="http://expressjs.com/en/guide/error-handling.html#the-default-error-handler">error handler</a>. You could want to customize it to allow you to inform how the errors will be delivered to your users. For more on this (for those who wants, for example, to send JSON errors), take a look at <a href="https://github.com/d0whc3r/typescript-rest/issues/16">this question</a>;</p>
 				<h3 id="bodyparser-options">BodyParser Options</h3>
 				<p>If you need to inform any options to the body parser, you can use the @BodyOptions decorator.</p>
 				<p>You can inform any property accepted by <a href="https://www.npmjs.com/package/body-parser">bodyParser</a></p>
@@ -919,7 +919,7 @@ test(myObject: MyClass): <span class="hljs-built_in">void</span> {
   }
 }</code></pre>
 				<h3 id="ioc">IoC</h3>
-				<p>It is possible to delegate to <a href="https://github.com/thiagobustamante/typescript-ioc">typescript-ioc</a> the instantiation of the service objects.</p>
+				<p>It is possible to delegate to <a href="https://github.com/d0whc3r/typescript-ioc">typescript-ioc</a> the instantiation of the service objects.</p>
 				<p>First, install typescript-ioc:</p>
 				<pre><code class="language-sh">npm install --save typescript-ioc</code></pre>
 				<p>Then, you can configure it in two ways:</p>
@@ -1091,11 +1091,11 @@ Server.swagger(app, <span class="hljs-string">'./swagger.yaml'</span>, <span cla
 				<blockquote>
 					<p>See <a href="https://github.com/scottie1984/swagger-ui-express"><code>swagger-ui-express</code></a> for more options and <a href="https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md"><code>swagger-ui</code></a> for more <code>swaggerOptions</code>. Note: Not all <code>swagger-ui</code> options are supported. Specifically, any options with a <code>Function</code> value will not work.</p>
 				</blockquote>
-				<p>To generate the swagger file, you can use the <a href="https://github.com/thiagobustamante/typescript-rest-swagger">typescript-rest-swagger</a> tool.</p>
+				<p>To generate the swagger file, you can use the <a href="https://github.com/d0whc3r/typescript-rest-swagger">typescript-rest-swagger</a> tool.</p>
 				<pre><code class="language-sh">npm install typescript-rest-swagger -g
 `</code></pre>
 				<pre><code class="language-sh">swaggerGen -c ./swaggerConfig.json</code></pre>
-				<p><a href="https://github.com/thiagobustamante/typescript-rest-swagger">typescript-rest-swagger</a> tool can generate a swagger file as an YAML or a JSON file.</p>
+				<p><a href="https://github.com/d0whc3r/typescript-rest-swagger">typescript-rest-swagger</a> tool can generate a swagger file as an YAML or a JSON file.</p>
 				<h1 id="breaking-changes">Breaking Changes</h1>
 				<p>Starting from version 1.0.0, it is required to inform the body type on all ReferencedResources, like:</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">interface</span> NewObject {
