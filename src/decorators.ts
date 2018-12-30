@@ -433,7 +433,7 @@ export function GET(target: any, propertyKey: string,
  * ```
  */
 export function GETMapping(path: string = '/') {
-    return function (...args: any[]) {
+    return function (...args: Array<any>) {
         args = _.without(args, undefined);
         if (args.length === 3 && typeof args[2] === 'object') {
             GET(args[0], args[1], args[2]);
@@ -494,7 +494,7 @@ export function POST(target: any, propertyKey: string,
  * ```
  */
 export function POSTMapping(path: string = '/') {
-    return function (...args: any[]) {
+    return function (...args: Array<any>) {
         args = _.without(args, undefined);
         if (args.length === 3 && typeof args[2] === 'object') {
             POST(args[0], args[1], args[2]);
@@ -556,7 +556,7 @@ export function PUT(target: any, propertyKey: string,
  * ```
  */
 export function PUTMapping(path: string = '/') {
-    return function (...args: any[]) {
+    return function (...args: Array<any>) {
         args = _.without(args, undefined);
         if (args.length === 3 && typeof args[2] === 'object') {
             PUT(args[0], args[1], args[2]);
@@ -618,7 +618,7 @@ export function DELETE(target: any, propertyKey: string,
  * ```
  */
 export function DELETEMapping(path: string = '/') {
-    return function (...args: any[]) {
+    return function (...args: Array<any>) {
         args = _.without(args, undefined);
         if (args.length === 3 && typeof args[2] === 'object') {
             DELETE(args[0], args[1], args[2]);
@@ -679,7 +679,7 @@ export function HEAD(target: any, propertyKey: string,
  * ```
  */
 export function HEADMapping(path: string = '/') {
-    return function (...args: any[]) {
+    return function (...args: Array<any>) {
         args = _.without(args, undefined);
         if (args.length === 3 && typeof args[2] === 'object') {
             HEAD(args[0], args[1], args[2]);
@@ -740,7 +740,7 @@ export function OPTIONS(target: any, propertyKey: string,
  * ```
  */
 export function OPTIONSMapping(path: string = '/') {
-    return function (...args: any[]) {
+    return function (...args: Array<any>) {
         args = _.without(args, undefined);
         if (args.length === 3 && typeof args[2] === 'object') {
             OPTIONS(args[0], args[1], args[2]);
@@ -802,7 +802,7 @@ export function PATCH(target: any, propertyKey: string,
  * ```
  */
 export function PATCHMapping(path: string = '/') {
-    return function (...args: any[]) {
+    return function (...args: Array<any>) {
         args = _.without(args, undefined);
         if (args.length === 3 && typeof args[2] === 'object') {
             PATCH(args[0], args[1], args[2]);
