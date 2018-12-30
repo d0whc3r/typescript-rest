@@ -1,0 +1,1227 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Typescript-rest</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">Typescript-rest</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> Typescript-rest</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><a href="https://badge.fury.io/js/%40d0whc3r%2Ftypescript-rest"><img src="https://badge.fury.io/js/%40d0whc3r%2Ftypescript-rest.svg" alt="npm version"></a>
+					<a href="https://travis-ci.org/d0whc3r/typescript-rest"><img src="https://travis-ci.org/d0whc3r/typescript-rest.svg?branch=master" alt="Build Status"></a>
+					<a href="https://coveralls.io/github/d0whc3r/typescript-rest?branch=master"><img src="https://coveralls.io/repos/github/d0whc3r/typescript-rest/badge.svg?branch=master" alt="Coverage Status"></a>
+				<a href="https://snyk.io/test/github/d0whc3r/typescript-rest?targetFile=package.json"><img src="https://snyk.io/test/github/d0whc3r/typescript-rest/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a></p>
+				<h1 id="rest-services-for-typescript">REST Services for Typescript</h1>
+				<p>This is a lightweight annotation-based <a href="http://expressjs.com/">expressjs</a> extension for typescript.</p>
+				<p>It can be used to define your APIs using ES7 decorators.</p>
+				<p><strong>Project Sponsors</strong></p>
+				<p>This project is supported by <a href="https://github.com/Leanty/">Leanty</a>&#39;s team and is widely used by its main product: The <a href="http://www.treegateway.org">Tree Gateway</a> API Gateway.</p>
+				<p><strong>Table of Contents</strong> </p>
+				<ul>
+					<li><a href="#">REST Services for Typescript</a><ul>
+							<li><a href="#installation">Installation</a></li>
+							<li><a href="#configuration">Configuration</a></li>
+							<li><a href="#basic-usage">Basic Usage</a></li>
+							<li><a href="#boilerplate-project">Boilerplate Project</a>  </li>
+							<li><a href="#complete-guide">Complete Guide</a><ul>
+									<li><a href="#server">Server</a><ul>
+											<li><a href="#registering-services">Registering Services</a></li>
+										</ul>
+									</li>
+									<li><a href="#path-decorator">@Path Decorator</a><ul>
+											<li><a href="#path-parameters">Path Parameters</a></li>
+										</ul>
+									</li>
+									<li><a href="#security-decorator">@Security Decorator</a></li>
+									<li><a href="#http-methods">Http Methods</a></li>
+									<li><a href="#parameters">Parameters</a></li>
+									<li><a href="#service-context">Service Context</a></li>
+									<li><a href="#service-return">Service Return</a><ul>
+											<li><a href="#asynchronous-services">Asynchronous services</a></li>
+										</ul>
+									</li>
+									<li><a href="#errors">Errors</a></li>
+									<li><a href="#bodyparser-options">BodyParser Options</a></li>
+									<li><a href="#types-and-languages">Types and languages</a></li>
+									<li><a href="#ioc">IoC</a></li>
+									<li><a href="#inheritance-and-abstract-services">Inheritance and abstract services</a>    </li>
+									<li><a href="#preprocessors">Preprocessors</a></li>
+								</ul>
+							</li>
+							<li><a href="#swagger">Swagger</a></li>
+							<li><a href="#breaking-changes">Breaking Changes - 1.0.0</a></li>
+						</ul>
+					</li>
+				</ul>
+				<h2 id="installation">Installation</h2>
+				<p>This library only works with typescript. Ensure it is installed:</p>
+				<pre><code class="language-bash">npm install typescript -g</code></pre>
+				<p>To install typescript-rest:</p>
+				<pre><code class="language-bash">npm install typescript-rest --save</code></pre>
+				<h2 id="configuration">Configuration</h2>
+				<p>Typescript-rest requires the following TypeScript compilation options in your tsconfig.json file:</p>
+				<pre><code class="language-typescript">{
+  <span class="hljs-string">"compilerOptions"</span>: {
+    <span class="hljs-string">"experimentalDecorators"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"emitDecoratorMetadata"</span>: <span class="hljs-literal">true</span>
+  }
+}</code></pre>
+				<h2 id="basic-usage">Basic Usage</h2>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">"express"</span>;
+<span class="hljs-keyword">import</span> {Server, Path, GET, PathParam} <span class="hljs-keyword">from</span> <span class="hljs-string">"typescript-rest"</span>;
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">"/hello"</span>)
+<span class="hljs-keyword">class</span> HelloService {
+  <span class="hljs-meta">@Path</span>(<span class="hljs-string">":name"</span>)
+  <span class="hljs-meta">@GET</span>
+  sayHello( <span class="hljs-meta">@PathParam</span>(<span class="hljs-string">'name'</span>) name: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello "</span> + name;
+  }
+}
+
+<span class="hljs-keyword">let</span> app: express.Application = express();
+Server.buildServices(app);
+
+app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Rest Server listening on port 3000!'</span>);
+});
+</code></pre>
+				<p>That&#39;s it. You can just call now:</p>
+				<pre><code>GET http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">3000</span><span class="hljs-regexp">/hello/</span>joe</code></pre><h2 id="boilerplate-project">Boilerplate Project</h2>
+				<p>You can check <a href="https://github.com/vrudikov/typescript-rest-boilerplate">this project</a> to get started.</p>
+				<h2 id="complete-guide">Complete Guide</h2>
+				<p>This library allows you to use ES7 decorators to configure your services using
+				expressjs. </p>
+				<h3 id="server">Server</h3>
+				<p>The Server class is used to configure the server, like: </p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">let</span> app: express.Application = express();
+Server.setFileDest(<span class="hljs-string">'/uploads'</span>);
+Server.buildServices(app);
+app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Rest Server listening on port 3000!'</span>);
+});</code></pre>
+				<p>Note that Server receives an <code>express.Router</code> instance. Then it configures
+				all the routes based on the decorators used on your classes.</p>
+				<p>So, you can use also any other expressjs feature, like error handlers, middlewares etc
+				without any restriction.  </p>
+				<h4 id="registering-services">Registering Services</h4>
+				<p>When you call: </p>
+				<pre><code class="language-typescript">Server.buildServices(app);</code></pre>
+				<p>The service will expose all services that can be found in the imported module into the express router provided. But it is possible to choose which services you want to expose.</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">"express"</span>;
+<span class="hljs-keyword">import</span> {Server} <span class="hljs-keyword">from</span> <span class="hljs-string">"typescript-rest"</span>;
+<span class="hljs-keyword">import</span> {ServiceOne} <span class="hljs-keyword">from</span> <span class="hljs-string">"./service-one"</span>;
+<span class="hljs-keyword">import</span> {ServiceTwo} <span class="hljs-keyword">from</span> <span class="hljs-string">"./service-two"</span>;
+<span class="hljs-keyword">import</span> {ServiceThree} <span class="hljs-keyword">from</span> <span class="hljs-string">"./service-three"</span>;
+
+<span class="hljs-keyword">let</span> app: express.Application = express();
+Server.buildServices(app, ServiceOne, ServiceTwo, ServiceThree);</code></pre>
+				<p>It is possible to use multiples routers:</p>
+				<pre><code class="language-typescript">Server.buildServices(adminRouter, ...adminApi);
+Server.buildServices(app, ServiceOne);</code></pre>
+				<p>And it is, also, possible to use glob expressions to point where your services are:</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> app = express();
+
+<span class="hljs-keyword">const</span> apis = express.Router();
+<span class="hljs-keyword">const</span> admin = express.Router();
+
+Server.loadServices(apis, <span class="hljs-string">'lib/controllers/apis/*'</span>);
+Server.loadServices(admin, <span class="hljs-string">'lib/controllers/admin/*'</span>);
+
+app.use(<span class="hljs-string">'apis'</span>, apis);
+app.use(<span class="hljs-string">'admin'</span>, admin);</code></pre>
+				<p>That will register all services exported by any file located under <code>lib/controllers/apis</code> in the <code>apis</code> router and services in <code>lib/controllers/admin</code> in the <code>admin</code> router.</p>
+				<p>Negation is also supported in the glob patterns:</p>
+				<pre><code class="language-typescript">  Server.loadServices(app, [<span class="hljs-string">'lib/controllers/*'</span>, <span class="hljs-string">'!**/exclude*'</span>]);
+  <span class="hljs-comment">// includes all controllers, excluding that one which name starts with 'exclude'</span></code></pre>
+				<p>And it is possilbe to inform a base folder for the patterns: </p>
+				<pre><code class="language-typescript">  Server.loadServices(app, <span class="hljs-string">'controllers/*'</span>, <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/..`</span>]);
+  <span class="hljs-comment">// Inform a folder as origin for the patterns</span></code></pre>
+				<h3 id="-path-decorator">@Path Decorator</h3>
+				<p>The @Path decorator allow us to define a router path for a given endpoint.
+					Route paths, in combination with a request method, define the endpoints at
+				which requests can be made. Route paths can be strings, string patterns, or regular expressions.</p>
+				<p>The characters ?, +, *, and () are subsets of their regular expression counterparts.
+				The hyphen (-) and the dot (.) are interpreted literally by string-based paths.</p>
+				<p><em>We use <a href="https://www.npmjs.com/package/path-to-regexp">path-to-regexp</a> for matching the
+				route paths; see the path-to-regexp documentation for all the possibilities in defining route paths.</em></p>
+				<p>Some examples:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"/hello"</span>)
+<span class="hljs-keyword">class</span> HelloService {
+}</code></pre>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"/test/hello"</span>)
+<span class="hljs-keyword">class</span> TestService {
+}</code></pre>
+				<p>This route path will match acd and abcd:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"ab?cd"</span>)
+<span class="hljs-keyword">class</span> TestService {
+}</code></pre>
+				<p>This route path will match abcd, abbcd, abbbcd, and so on:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"ab+cd"</span>)
+<span class="hljs-keyword">class</span> TestService {
+}</code></pre>
+				<p>This route path will match abcd, abxcd, abRANDOMcd, ab123cd, and so on:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"ab*cd"</span>)
+<span class="hljs-keyword">class</span> TestService {
+}</code></pre>
+				<p>This route path will match /abe and /abcde:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"/ab(cd)?e"</span>)
+<span class="hljs-keyword">class</span> TestService {
+}</code></pre>
+				<p>This route path will match butterfly and dragonfly, but not butterflyman, dragonfly man, and so on:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"/.*fly$/"</span>)
+<span class="hljs-keyword">class</span> TestService {
+}</code></pre>
+				<h4 id="path-parameters">Path Parameters</h4>
+				<p>Route parameters are named URL segments that are used to capture the values specified at their position in the URL.
+					The captured values are populated in the req.params object, with the name of the route parameter specified in
+				the path as their respective keys. They can be refered through @PathParam decorator on a service method argument.</p>
+				<p>Some examples:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"/users"</span>)
+<span class="hljs-keyword">class</span> UserService {
+   <span class="hljs-meta">@Path</span>(<span class="hljs-string">"/:userId/books/:bookId"</span>)
+   <span class="hljs-meta">@GET</span>
+   getUserBook(<span class="hljs-meta">@PathParam</span>(<span class="hljs-string">"userId"</span>) userId: <span class="hljs-built_in">number</span>, <span class="hljs-meta">@PathParam</span>(<span class="hljs-string">"bookId"</span>) bookId: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">Promise</span>&lt;Book&gt; {
+      <span class="hljs-comment">//...</span>
+   }
+}</code></pre>
+				<p>The requested URL <a href="http://localhost:3000/users/34/books/8989">http://localhost:3000/users/34/books/8989</a> would map the parameters as:</p>
+				<pre><code><span class="hljs-symbol">   userId:</span> <span class="hljs-string">"34"</span>
+<span class="hljs-symbol">   bookId:</span> <span class="hljs-string">"8989"</span></code></pre><p>Since the hyphen (-) and the dot (.) are interpreted literally, they can be used along with route 
+				parameters for useful purposes.</p>
+				<pre><code>Route <span class="hljs-string">path:</span> <span class="hljs-regexp">/flights/</span>:from-:to
+Request <span class="hljs-string">URL:</span> <span class="hljs-string">http:</span><span class="hljs-comment">//localhost:3000/flights/LAX-SFO</span>
+req.<span class="hljs-string">params:</span> { <span class="hljs-string">"from"</span>: <span class="hljs-string">"LAX"</span>, <span class="hljs-string">"to"</span>: <span class="hljs-string">"SFO"</span> }</code></pre><pre><code>Route <span class="hljs-string">path:</span> <span class="hljs-regexp">/plantae/</span>:genus.:species
+Request <span class="hljs-string">URL:</span> <span class="hljs-string">http:</span><span class="hljs-comment">//localhost:3000/plantae/Prunus.persica</span>
+req.<span class="hljs-string">params:</span> { <span class="hljs-string">"genus"</span>: <span class="hljs-string">"Prunus"</span>, <span class="hljs-string">"species"</span>: <span class="hljs-string">"persica"</span> }</code></pre><h3 id="-security-decorator">@Security Decorator</h3>
+				<p>The @Security decorator allow us to define a authorization for a given endpoint.
+					Security is using <a href="https://github.com/jaredhanson/passport">passport</a> and it can be configured using
+				<code>passportAuth</code> method in <code>Server</code></p>
+				<pre><code class="language-typescript">Server.passportAuth(strategy, roleKey);</code></pre>
+				<ul>
+					<li>strategy: is part of passport configuration</li>
+					<li>roleKey: by default &quot;<em>roles</em>&quot;, it is part of user object format</li>
+				</ul>
+				<p>Some examples:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Security</span>()
+<span class="hljs-keyword">class</span> HelloService {
+    <span class="hljs-meta">@Security</span>(<span class="hljs-string">"ROLE_ADMIN"</span>)
+    admin() {}
+
+    authorized() {}
+}</code></pre>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Security</span>(<span class="hljs-string">"ROLE_USER"</span>)
+<span class="hljs-keyword">class</span> TestService {
+}</code></pre>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Security</span>([<span class="hljs-string">"ROLE_ADMIN"</span>, <span class="hljs-string">"ROLE_USER"</span>])
+<span class="hljs-keyword">class</span> AuthService {
+}</code></pre>
+				<h3 id="http-methods">Http Methods</h3>
+				<p>We have decorators for each HTTP method. Theses decorators are used on service methods already bound
+				to a Path route to specify the endpoint at which requests can be made.</p>
+				<p>The following decorators can be used:</p>
+				<ul>
+					<li>@GET </li>
+					<li>@POST</li>
+					<li>@PUT</li>
+					<li>@PATCH</li>
+					<li>@DELETE</li>
+					<li>@OPTIONS</li>
+					<li>@HEAD</li>
+				</ul>
+				<p>Also exists mapping options to use @Path and @Method together:</p>
+				<ul>
+					<li>@GETMapping </li>
+					<li>@POSTMapping</li>
+					<li>@PUTMapping</li>
+					<li>@PATCHMapping</li>
+					<li>@DELETEMapping</li>
+					<li>@OPTIONSMapping</li>
+					<li>@HEADMapping</li>
+				</ul>
+				<p>Some examples:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"/users"</span>)
+<span class="hljs-keyword">class</span> UserService {
+   <span class="hljs-meta">@GET</span>
+   getUsers(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">Array</span>&lt;User&gt;&gt; {
+      <span class="hljs-comment">//...</span>
+   }
+
+   <span class="hljs-meta">@GET</span>
+   <span class="hljs-meta">@Path</span>(<span class="hljs-string">":userId"</span>)
+   getUser(<span class="hljs-meta">@PathParam</span>(<span class="hljs-string">"userId"</span>)): <span class="hljs-built_in">Promise</span>&lt;User&gt; {
+      <span class="hljs-comment">//...</span>
+   }
+
+   <span class="hljs-meta">@PUT</span>
+   <span class="hljs-meta">@Path</span>(<span class="hljs-string">":userId"</span>)
+   saveUser(<span class="hljs-meta">@PathParam</span>(<span class="hljs-string">"userId"</span>), user: User): <span class="hljs-built_in">void</span> {
+      <span class="hljs-comment">//...</span>
+   }
+}</code></pre>
+				<p>Using mappings:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"/users"</span>)
+<span class="hljs-keyword">class</span> UserService {
+   <span class="hljs-meta">@GET</span>
+   getUsers(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">Array</span>&lt;User&gt;&gt; {
+      <span class="hljs-comment">//...</span>
+   }
+
+   <span class="hljs-meta">@GETMapping</span>(<span class="hljs-string">":userId"</span>)
+   getUser(<span class="hljs-meta">@PathParam</span>(<span class="hljs-string">"userId"</span>)): <span class="hljs-built_in">Promise</span>&lt;User&gt; {
+      <span class="hljs-comment">//...</span>
+   }
+
+   <span class="hljs-meta">@PUTMapping</span>(<span class="hljs-string">":userId"</span>)
+   saveUser(<span class="hljs-meta">@PathParam</span>(<span class="hljs-string">"userId"</span>), user: User): <span class="hljs-built_in">void</span> {
+      <span class="hljs-comment">//...</span>
+   }
+}</code></pre>
+				<p>Only methods decorated with one of this HTTP method decorators are exposed as handlers for
+				requests on the server.</p>
+				<p>A single method can only be decorated with one of those decorators at a time.</p>
+				<h3 id="parameters">Parameters</h3>
+				<p>There are decorators to map parameters to arguments on service methods. Each decorator can map a
+				differente kind of parameter on request.</p>
+				<p>The following decorators are available:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Decorator</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>@PathParam</td>
+							<td>Parameter in requested URL path </td>
+						</tr>
+						<tr>
+							<td>@QueryParam</td>
+							<td>Parameter in the query string </td>
+						</tr>
+						<tr>
+							<td>@FormParam</td>
+							<td>Parameter in an HTML form </td>
+						</tr>
+						<tr>
+							<td>@HeaderParam</td>
+							<td>Parameter in the request header</td>
+						</tr>
+						<tr>
+							<td>@CookieParam</td>
+							<td>Parameter in a cookie  </td>
+						</tr>
+						<tr>
+							<td>@FileParam</td>
+							<td>A File in a multipart form  </td>
+						</tr>
+						<tr>
+							<td>@FilesParam</td>
+							<td>An array of Files in a multipart form  </td>
+						</tr>
+						<tr>
+							<td>@Param</td>
+							<td>Parameter in the query string or in an HTML form</td>
+						</tr>
+				</tbody></table>
+				<p>Some examples:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"/sample"</span>)
+<span class="hljs-keyword">class</span> Sample {
+   <span class="hljs-meta">@GET</span>
+   test(<span class="hljs-meta">@QueryParam</span>(<span class="hljs-string">"limit"</span>) limit:<span class="hljs-built_in">number</span>, <span class="hljs-meta">@QueryParam</span>(<span class="hljs-string">"skip"</span>) skip:<span class="hljs-built_in">number</span>) {
+      <span class="hljs-comment">//...</span>
+      <span class="hljs-comment">// GET http://domain/sample?limit=5&amp;skip=10</span>
+   }
+
+   <span class="hljs-meta">@POST</span>
+   test(<span class="hljs-meta">@FormParam</span>(<span class="hljs-string">"name"</span>) name:<span class="hljs-built_in">string</span>) {
+      <span class="hljs-comment">//...</span>
+      <span class="hljs-comment">// POST http://domain/sample</span>
+      <span class="hljs-comment">// body: name=joe</span>
+   }
+
+   <span class="hljs-meta">@POST</span>
+   <span class="hljs-meta">@Path</span>(<span class="hljs-string">"upload"</span>)
+   testUploadFile( <span class="hljs-meta">@FileParam</span>(<span class="hljs-string">"myFile"</span>) file: Express.Multer.File, 
+                   <span class="hljs-meta">@FormParam</span>(<span class="hljs-string">"myField"</span>) myField: <span class="hljs-built_in">string</span>) {
+      <span class="hljs-comment">//...</span>
+      <span class="hljs-comment">/* POST http://domain/sample/upload
+      Content-Type: multipart/form-data; boundary=AaB03x
+
+      --AaB03x
+      Content-Disposition: form-data; name="myField"
+
+      Field Value
+      --AaB03x
+      Content-Disposition: form-data; name="myFile"; filename="file1.txt"
+      Content-Type: text/plain
+
+      ... contents of file1.txt ...
+      --AaB03x--
+      */</span>
+   }
+}</code></pre>
+				<p>An argument that has no decorator is handled as a json serialized entity in the request body </p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"/sample"</span>)
+<span class="hljs-keyword">class</span> Sample {
+   <span class="hljs-meta">@POST</span>
+   test(user: User) {
+      <span class="hljs-comment">//...</span>
+      <span class="hljs-comment">// POST http://domain/sample</span>
+      <span class="hljs-comment">// body: a json representation of the User object</span>
+   }
+}</code></pre>
+				<p>The <code>@*Param</code> decorators can also be used on service class properties.  </p>
+				<p>An example:</p>
+				<pre><code class="language-typescript"> <span class="hljs-meta">@Path</span>(<span class="hljs-string">"users/:userId/photos"</span>)
+ <span class="hljs-keyword">class</span> TestService {
+   <span class="hljs-meta">@PathParam</span>(<span class="hljs-string">'userId'</span>)
+   userId: <span class="hljs-built_in">string</span>;
+
+   <span class="hljs-meta">@GET</span>
+   getPhoto(<span class="hljs-meta">@PathParam</span>(<span class="hljs-string">'photoId'</span>)) {
+      <span class="hljs-comment">// Get the photo and return</span>
+   }
+ }</code></pre>
+				<h3 id="service-context">Service Context</h3>
+				<p>A Context object is created to group informations about the current request being handled.
+				This Context can be accessed by service methods.</p>
+				<p>The Context is represented by the <code>ServiceContext</code> class and has the following properties:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Property</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>request</td>
+							<td>express.Request</td>
+							<td>The request object </td>
+						</tr>
+						<tr>
+							<td>response</td>
+							<td>express.Response</td>
+							<td>The response object </td>
+						</tr>
+						<tr>
+							<td>language</td>
+							<td>string</td>
+							<td>The resolved language to be used to handle the current request.  </td>
+						</tr>
+						<tr>
+							<td>accept</td>
+							<td>string</td>
+							<td>The preferred media type to be used to respond the current request. </td>
+						</tr>
+						<tr>
+							<td>next</td>
+							<td>express.NextFunction</td>
+							<td>The next function. It can be used to delegate to the next middleware registered the processing of the current request. </td>
+						</tr>
+				</tbody></table>
+				<p>See <a href="#types-and-languages">Types and languages</a> to know how the language and accept fields are calculated.</p>
+				<p>The <code>@Context</code> decorator can be used on service method&#39;s arguments or on service class properties to bind
+				the argument or the property to the current context object.  </p>
+				<p>A Context usage example:</p>
+				<pre><code class="language-typescript"> <span class="hljs-meta">@Path</span>(<span class="hljs-string">"context"</span>)
+ <span class="hljs-keyword">class</span> TestService {
+   <span class="hljs-meta">@Context</span>
+   context: ServiceContext;
+
+   <span class="hljs-meta">@GET</span>
+   sayHello() {
+      <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">this</span>.context.language) {
+         <span class="hljs-keyword">case</span> <span class="hljs-string">"en"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;
+         <span class="hljs-keyword">case</span> <span class="hljs-string">"pt"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"Olá"</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;
+   }
+ }</code></pre>
+				<p>We can use the decorator on method arguments too:</p>
+				<pre><code class="language-typescript"> <span class="hljs-meta">@Path</span>(<span class="hljs-string">"context"</span>)
+ <span class="hljs-keyword">class</span> TestService {
+
+   <span class="hljs-meta">@GET</span>
+   sayHello(<span class="hljs-meta">@Context</span> context: ServiceContext) {
+      <span class="hljs-keyword">switch</span> (context.language) {
+         <span class="hljs-keyword">case</span> <span class="hljs-string">"en"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;
+         <span class="hljs-keyword">case</span> <span class="hljs-string">"pt"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"Olá"</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;
+   }
+ }</code></pre>
+				<p>You can use, also, one of the other decorators to access directly one of
+				the Context property. It is a kind of suggar syntax.</p>
+				<ul>
+					<li>@ContextRequest: To access ServiceContext.request</li>
+					<li>@ContextResponse: To access ServiceContext.response</li>
+					<li>@ContextNext: To access ServiceContext.next</li>
+					<li>@ContextLanguage: To access ServiceContext.language</li>
+					<li>@ContextAccept: To access ServiceContext.accept</li>
+				</ul>
+				<pre><code class="language-typescript"> <span class="hljs-meta">@Path</span>(<span class="hljs-string">"context"</span>)
+ <span class="hljs-keyword">class</span> TestService {
+
+   <span class="hljs-meta">@GET</span>
+   sayHello(<span class="hljs-meta">@ContextLanguage</span> language: <span class="hljs-built_in">string</span>) {
+      <span class="hljs-keyword">switch</span> (language) {
+         <span class="hljs-keyword">case</span> <span class="hljs-string">"en"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;
+         <span class="hljs-keyword">case</span> <span class="hljs-string">"pt"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"Olá"</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;
+   }
+ }</code></pre>
+				<h3 id="service-return">Service Return</h3>
+				<p>This library can receive the return of your service method and handle the serialization of the response as long as
+				handle the correct content type of your result and the response status codes to be sent.</p>
+				<p>When a primitive type is returned by a service method, it is sent as a plain text into the response body.</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@GET</span>
+sayHello(): <span class="hljs-built_in">string</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;
+}</code></pre>
+				<p>The response will contains only the String <code>Hello</code> as a plain text </p>
+				<p>When an object is returned, it is sent as a json serialized string into the response body.</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@GET</span>
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">":id"</span>)
+getPerson(<span class="hljs-meta">@PathParam</span>(<span class="hljs-string">":id"</span>) id: <span class="hljs-built_in">number</span>): Person {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Person(id);
+}</code></pre>
+				<p>The response will contains the person json serialization (ex: <code>{id: 123}</code>. The response
+				will have a <code>application/json</code> context type. </p>
+				<p>When the method returns nothing, an empty body is sent withh a <code>204</code> status code.</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@POST</span>
+test(myObject: MyClass): <span class="hljs-built_in">void</span> {
+  <span class="hljs-comment">//...</span>
+}</code></pre>
+				<p>We provide also, some special types to inform that a reference to a resource is returned and
+				that the server should handle it properly.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>NewResource</td>
+							<td>Inform that a new resource was created. Server will add a Location header and set status to 201 </td>
+						</tr>
+						<tr>
+							<td>RequestAccepted</td>
+							<td>Inform that the request was accepted but is not completed. A Location header should inform the location where the user can monitor his request processing status. Server will set the status to 202 </td>
+						</tr>
+						<tr>
+							<td>MovedPermanently</td>
+							<td>Inform that the resource has permanently moved to a new location, and that future references should use a new URI with their requests. Server will set the status to 301 </td>
+						</tr>
+						<tr>
+							<td>MovedTemporarily</td>
+							<td>Inform that the resource has temporarily moved to another location, but that future references should still use the original URI to access the resource. Server will set the status to 302 </td>
+						</tr>
+				</tbody></table>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {Return} <span class="hljs-keyword">from</span> <span class="hljs-string">"typescript-rest"</span>;
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">"test"</span>)
+<span class="hljs-keyword">class</span> TestService {
+   <span class="hljs-meta">@POST</span>
+   test(myObject: MyClass, <span class="hljs-meta">@ContextRequest</span> request: express.Request): Return.NewResource&lt;<span class="hljs-built_in">void</span>&gt; {
+      <span class="hljs-comment">//...</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Return.NewResource&lt;<span class="hljs-built_in">void</span>&gt;(req.url + <span class="hljs-string">"/"</span> + generatedId);
+   }
+
+   <span class="hljs-meta">@POST</span>
+   testWithBody(myObject: MyClass, <span class="hljs-meta">@ContextRequest</span> request: express.Request): Return.NewResource&lt;<span class="hljs-built_in">string</span>&gt; {
+      <span class="hljs-comment">//...</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Return.NewResource&lt;<span class="hljs-built_in">string</span>&gt;(req.url + <span class="hljs-string">"/"</span> + generatedId, <span class="hljs-string">'The body of the response'</span>);
+   }
+}</code></pre>
+				<p>The server will return an empty body with a <code>201</code> status code and a <code>Location</code> header pointing to
+				the URL of the created resource. </p>
+				<p>It is possible to specify a body to be sent in responses:</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {Return} <span class="hljs-keyword">from</span> <span class="hljs-string">"typescript-rest"</span>;
+
+<span class="hljs-keyword">interface</span> NewObject {
+  id: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">"test"</span>)
+<span class="hljs-keyword">class</span> TestService {
+   <span class="hljs-meta">@POST</span>
+   test(myObject: MyClass, <span class="hljs-meta">@ContextRequest</span> request: express.Request): Return.NewResource&lt;NewObject&gt; {
+      <span class="hljs-comment">//...</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Return.NewResource&lt;NewObject&gt;(req.url + <span class="hljs-string">"/"</span> + generatedId, {id: generatedId}); <span class="hljs-comment">//Returns a JSON on body {id: generatedId}</span>
+   }
+}</code></pre>
+				<p>You can use special types to download files:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>DownloadResource</td>
+							<td>Used to reference a resource (by its fileName) and download it</td>
+						</tr>
+						<tr>
+							<td>DownloadBinaryData</td>
+							<td>Used to return a file to download, based on a Buffer object</td>
+						</tr>
+				</tbody></table>
+				<p>For example: </p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {Return} <span class="hljs-keyword">from</span> <span class="hljs-string">"typescript-rest"</span>;
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">"download"</span>)
+<span class="hljs-keyword">class</span> TestDownload {
+  <span class="hljs-meta">@GET</span>
+  testDownloadFile(): Return.DownloadResource {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Return.DownloadResource(__dirname +<span class="hljs-string">'/test-rest.spec.js'</span>, <span class="hljs-string">'/test-rest.spec.js'</span>);
+  }
+
+  <span class="hljs-meta">@GET</span>
+  testDownloadFile(): <span class="hljs-built_in">Promise</span>&lt;Return.DownloadBinaryData&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>&lt;Return.DownloadBinaryData&gt;<span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params">resolve, reject</span>)=&gt;{
+      fs.readFile(<span class="hljs-params">__dirname + '/test-rest.spec.js', (<span class="hljs-params">err, data</span>)=&gt;{
+        <span class="hljs-keyword">if</span> (<span class="hljs-params">err</span>) {
+          <span class="hljs-keyword">return</span> reject(<span class="hljs-params">err</span>);
+        }
+        <span class="hljs-keyword">return</span> resolve(<span class="hljs-params"><span class="hljs-keyword">new</span> Return.DownloadBinaryData(<span class="hljs-params">data, 'application/javascript', 'test-rest.spec.js'</span>)</span>)
+      }</span>);
+    }</span>);
+  }
+}</span></code></pre>
+				<h4 id="asynchronous-services">Asynchronous services</h4>
+				<p>The above section shows how the types returned are handled by the Server. However, most of the previous examples are working
+				synchronously. The recommended way is to work asynchronously, for a better performance.</p>
+				<p>To work asynchronously, you can return a <code>Promise</code> on your service method. The above rules to handle return types
+				applies to the returned promise resolved value.</p>
+				<p>Some examples:</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {Return} <span class="hljs-keyword">from</span> <span class="hljs-string">"typescript-rest"</span>;
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">"async"</span>)
+<span class="hljs-keyword">class</span> TestService {
+   <span class="hljs-meta">@POST</span>
+   test(myObject: MyClass, <span class="hljs-meta">@ContextRequest</span> request: express.Request): <span class="hljs-built_in">Promise</span>&lt;Return.NewResource&gt; {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>&lt;Return.NewResource&gt;(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>)</span>{
+         <span class="hljs-comment">//...</span>
+         resolve(<span class="hljs-keyword">new</span> Return.NewResource(req.url + <span class="hljs-string">"/"</span> + generatedId));
+      });
+   }
+
+   <span class="hljs-meta">@GET</span>
+   testGet() {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>&lt;MyClass&gt;(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>)</span>{
+         <span class="hljs-comment">//...</span>
+         resolve(<span class="hljs-keyword">new</span> MyClass());
+      });
+   }
+}</code></pre>
+				<p>It is important to observe that you can inform your return type explicitly or not, as you can see
+				in the above example.  </p>
+				<p>You can also use <code>async</code> and <code>await</code>:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">'async'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyAsyncService {
+    <span class="hljs-meta">@GET</span>
+    <span class="hljs-meta">@Path</span>(<span class="hljs-string">'test'</span>)
+    <span class="hljs-keyword">async</span> test( ) {
+        <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.aPromiseMethod();
+        <span class="hljs-keyword">return</span> result;
+    }
+
+    <span class="hljs-meta">@GET</span>
+    <span class="hljs-meta">@Path</span>(<span class="hljs-string">'test2'</span>)
+    <span class="hljs-keyword">async</span> test2( ) {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.aPromiseMethod();
+            <span class="hljs-keyword">return</span> result;
+        } <span class="hljs-keyword">catch</span> (e) {
+            <span class="hljs-comment">// log error here, if you want</span>
+            <span class="hljs-keyword">throw</span> e;
+        }
+    }
+
+    <span class="hljs-keyword">private</span> aPromiseMethod() {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span>&gt;<span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params">resolve, reject</span>) =&gt; {
+            setTimeout(<span class="hljs-params">(<span class="hljs-params"></span>) =&gt; {
+                resolve(<span class="hljs-params">'OK'</span>);
+            }, 10</span>);
+        }</span>);
+    }
+}</span></code></pre>
+				<h3 id="errors">Errors</h3>
+				<p>This library provide some Error classes to map the problems that you may want to report to your clients.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>BadRequestError</td>
+							<td>Used to report errors with status code 400. </td>
+						</tr>
+						<tr>
+							<td>UnauthorizedError</td>
+							<td>Used to report errors with status code 401. </td>
+						</tr>
+						<tr>
+							<td>ForbiddenError</td>
+							<td>Used to report errors with status code 403. </td>
+						</tr>
+						<tr>
+							<td>NotFoundError</td>
+							<td>Used to report errors with status code 404. </td>
+						</tr>
+						<tr>
+							<td>MethodNotAllowedError</td>
+							<td>Used to report errors with status code 405. </td>
+						</tr>
+						<tr>
+							<td>NotAcceptableError</td>
+							<td>Used to report errors with status code 406. </td>
+						</tr>
+						<tr>
+							<td>ConflictError</td>
+							<td>Used to report errors with status code 409. </td>
+						</tr>
+						<tr>
+							<td>InternalServerError</td>
+							<td>Used to report errors with status code 500. </td>
+						</tr>
+						<tr>
+							<td>NotImplementedError</td>
+							<td>Used to report errors with status code 501. </td>
+						</tr>
+				</tbody></table>
+				<p>If you throw any of these errors on a service method, the server you log the
+				problem and send a response with the appropriate status code an the error message on its body.</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {Errors} <span class="hljs-keyword">from</span> <span class="hljs-string">"typescript-rest"</span>;
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">"async"</span>)
+<span class="hljs-keyword">class</span> TestService {
+   <span class="hljs-meta">@GET</span>
+   <span class="hljs-meta">@Path</span>(<span class="hljs-string">"test1"</span>)
+   testGet() {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>&lt;MyClass&gt;(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>)</span>{
+         <span class="hljs-comment">//...</span>
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Errors.NotImplementedError(<span class="hljs-string">"This operation is not available yet"</span>);
+      });
+   }
+
+   <span class="hljs-meta">@GET</span>
+   <span class="hljs-meta">@Path</span>(<span class="hljs-string">"test2"</span>)
+   testGet2() {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>&lt;MyClass&gt;(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>)</span>{
+         <span class="hljs-comment">//...</span>
+         reject(<span class="hljs-keyword">new</span> Errors.NotImplementedError(<span class="hljs-string">"This operation is not available yet"</span>));
+      });
+   }
+
+   <span class="hljs-meta">@GET</span>
+   <span class="hljs-meta">@Path</span>(<span class="hljs-string">"test3"</span>)
+   testGet3() {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Errors.NotImplementedError(<span class="hljs-string">"This operation is not available yet"</span>);
+   }
+}</code></pre>
+				<p>All the three operations above will return a response with status code <code>501</code> and a message on the body
+				<code>This operation is not available yet</code></p>
+				<p>If you want to create a custom error that report your own status code, just extend the base class <code>HttpError</code>.</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {HttpError} <span class="hljs-keyword">from</span> <span class="hljs-string">"typescript-rest"</span>;
+
+<span class="hljs-keyword">class</span> MyOwnError <span class="hljs-keyword">extends</span> HttpError {
+  <span class="hljs-keyword">static</span> myNoSenseStatusCode: <span class="hljs-built_in">number</span> = <span class="hljs-number">999</span>;
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">message?: <span class="hljs-built_in">string</span></span>) {
+    <span class="hljs-keyword">super</span>(<span class="hljs-string">"MyOwnError"</span>, MyOwnError.myNoSenseStatusCode, message);
+  }
+}</code></pre>
+				<p>You must remember that all uncaught errors are handled by a expressjs <a href="http://expressjs.com/en/guide/error-handling.html#the-default-error-handler">error handler</a>. You could want to customize it to allow you to inform how the errors will be delivered to your users. For more on this (for those who wants, for example, to send JSON errors), take a look at <a href="https://github.com/d0whc3r/typescript-rest/issues/16">this question</a>;</p>
+				<h3 id="bodyparser-options">BodyParser Options</h3>
+				<p>If you need to inform any options to the body parser, you can use the @BodyOptions decorator.</p>
+				<p>You can inform any property accepted by <a href="https://www.npmjs.com/package/body-parser">bodyParser</a></p>
+				<p>For example:</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {HttpError} <span class="hljs-keyword">from</span> <span class="hljs-string">"typescript-rest"</span>;
+
+<span class="hljs-keyword">import</span> {Errors} <span class="hljs-keyword">from</span> <span class="hljs-string">"typescript-rest"</span>;
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">"async"</span>)
+<span class="hljs-keyword">class</span> TestService {
+   <span class="hljs-meta">@POST</span>
+   <span class="hljs-meta">@Path</span>(<span class="hljs-string">"test1"</span>)
+   <span class="hljs-meta">@BodyOptions</span>({limit:<span class="hljs-string">'100kb'</span>})
+   testPost(myData) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>&lt;MyClass&gt;(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>)</span>{
+         <span class="hljs-comment">//...</span>
+         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Errors.NotImplementedError(<span class="hljs-string">"This operation is not available yet"</span>);
+      });
+   }
+
+   <span class="hljs-meta">@GET</span>
+   <span class="hljs-meta">@Path</span>(<span class="hljs-string">"test2"</span>)
+   <span class="hljs-meta">@BodyOptions</span>({extended:<span class="hljs-literal">false</span>})
+   testPost2(<span class="hljs-meta">@FormParam</span>(<span class="hljs-string">"field1"</span>)myParam) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>&lt;MyClass&gt;(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>)</span>{
+         <span class="hljs-comment">//...</span>
+         reject(<span class="hljs-keyword">new</span> Errors.NotImplementedError(<span class="hljs-string">"This operation is not available yet"</span>));
+      });
+   }
+
+   <span class="hljs-meta">@GET</span>
+   <span class="hljs-meta">@Path</span>(<span class="hljs-string">"test3"</span>)
+   testGet3() {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Errors.NotImplementedError(<span class="hljs-string">"This operation is not available yet"</span>);
+   }
+}</code></pre>
+				<p>It can be used, for example, to inform the bodyParser that it must handle date types for you:</p>
+				<pre><code class="language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dateReviver</span>(<span class="hljs-params">key, value</span>) </span>{
+    <span class="hljs-keyword">let</span> a;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">'string'</span>) {
+        a = <span class="hljs-regexp">/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)Z$/</span>.exec(value);
+        <span class="hljs-keyword">if</span> (a) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-built_in">Date</span>.UTC(+a[<span class="hljs-number">1</span>], +a[<span class="hljs-number">2</span>] - <span class="hljs-number">1</span>, +a[<span class="hljs-number">3</span>], +a[<span class="hljs-number">4</span>],
+                            +a[<span class="hljs-number">5</span>], +a[<span class="hljs-number">6</span>]));
+        }
+    }
+    <span class="hljs-keyword">return</span> value;
+}
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">'test'</span>)
+<span class="hljs-keyword">class</span> MyRestService {
+   <span class="hljs-meta">@POST</span>
+   <span class="hljs-meta">@BodyOptions</span>({reviver: dateReviver})
+   myHandler(param) {
+      <span class="hljs-comment">//...</span>
+   }
+} </code></pre>
+				<h3 id="types-and-languages">Types and languages</h3>
+				<p>It is possible to use decorators to inform the server which languages or mime types are supported by each service method.</p>
+				<p>These decorators can be used on the service class or on a service method (or both).</p>
+				<p>The following decorators are available:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Decorator</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>AcceptLanguage</td>
+							<td>Tell the <a href="classes/_server_.server.html">Server</a> that a class or a method should only accept requests from clients that accepts one of the supported languages. </td>
+						</tr>
+						<tr>
+							<td>Accept</td>
+							<td>Tell the <a href="classes/_server_.server.html">Server</a> that a class or a method should only accept requests from clients that accepts one of the supported mime types. </td>
+						</tr>
+				</tbody></table>
+				<p>See some examples:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"test"</span>)
+<span class="hljs-meta">@AcceptLanguage</span>(<span class="hljs-string">"en"</span>, <span class="hljs-string">"pt-BR"</span>)
+<span class="hljs-keyword">class</span> TestAcceptService {
+  <span class="hljs-meta">@GET</span>
+  testLanguage(<span class="hljs-meta">@ContextLanguage</span> language: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span> {
+    <span class="hljs-keyword">if</span> (language === <span class="hljs-string">'en'</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-string">"accepted"</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"aceito"</span>;
+  }
+}</code></pre>
+				<p>In the above example, we declare that only <code>English</code> and <code>Brazilian Portuguese</code> are supported.
+					The order here is important. That declaration says that our first language is <code>English</code>. So, if nothing
+					was specified by the request, or if these two languages has the same weight on the
+				resquest <code>Accept-Language</code> header, <code>English</code> will be the choice.  </p>
+				<p>If the request specifies an <code>Accept-Language</code> header, we will choose the language that best fit the
+				header value, considering the list of possible values declared on <code>@AcceptLanguage</code> decorator.</p>
+				<p>If none of our possibilities is good for the <code>Accept-Language</code> header in the request, the server
+				throws a <code>NotAcceptableError</code> and returns a <code>406</code> status code for the client.</p>
+				<p>You can decorate methods too, like:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"test"</span>)
+<span class="hljs-meta">@AcceptLanguage</span>(<span class="hljs-string">"en"</span>, <span class="hljs-string">"pt-BR"</span>)
+<span class="hljs-keyword">class</span> TestAcceptService {
+  <span class="hljs-meta">@GET</span>
+  <span class="hljs-meta">@AcceptLanguage</span>(<span class="hljs-string">"fr"</span>)
+  testLanguage(<span class="hljs-meta">@ContextLanguage</span> language: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span> {
+    <span class="hljs-comment">// ...</span>
+  }
+}</code></pre>
+				<p>On the above example, the list of accepted languages will be <code>[&quot;en&quot;, &quot;pt-BR&quot;, &quot;fr&quot;]</code>, in that order.</p>
+				<p>The <code>@Accept</code> decorator works exaclty like <code>@AcceptLanguage</code>, but it inform the server about the mime type
+				that a service can provide. It uses the <code>Accept</code> header in the request to decide about the preferred media to use.</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">"test"</span>)
+<span class="hljs-meta">@Accept</span>(<span class="hljs-string">"application/json"</span>)
+<span class="hljs-keyword">class</span> TestAcceptService {
+  <span class="hljs-meta">@GET</span>
+  testType(<span class="hljs-meta">@ContextAccept</span> accept: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span> {
+     <span class="hljs-comment">//...</span>
+  }
+}</code></pre>
+				<h3 id="ioc">IoC</h3>
+				<p>It is possible to delegate to <a href="https://github.com/d0whc3r/typescript-ioc">typescript-ioc</a> the instantiation of the service objects.</p>
+				<p>First, install typescript-ioc:</p>
+				<pre><code class="language-sh">npm install --save typescript-ioc</code></pre>
+				<p>Then, you can configure it in two ways:</p>
+				<ol>
+					<li>Create a file called <code>rest.config</code> and put it on the root of your project:</li>
+				</ol>
+				<pre><code class="language-json">{
+   <span class="hljs-attr">"useIoC"</span>: <span class="hljs-literal">true</span>
+}
+</code></pre>
+				<p>or </p>
+				<ol start="2">
+					<li>Proggramatically. Ensure that you call <code>Server.useIoC()</code> in the begining of your code, before any service declaration</li>
+				</ol>
+				<pre><code class="language-typescript"><span class="hljs-comment">/* Ensure to call Server.useIoC() before your service declarations.
+It only need to be called once */</span>
+Server.useIoC();
+
+<span class="hljs-meta">@AutoWired</span>
+<span class="hljs-keyword">class</span> HelloService {
+  sayHello(name: <span class="hljs-built_in">string</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello "</span> + name;
+  }
+}
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">"/hello"</span>)
+<span class="hljs-meta">@AutoWired</span>
+<span class="hljs-keyword">class</span> HelloRestService {
+  <span class="hljs-meta">@Inject</span>
+  <span class="hljs-keyword">private</span> helloService: HelloService;
+
+  <span class="hljs-meta">@Path</span>(<span class="hljs-string">":name"</span>)
+  <span class="hljs-meta">@GET</span>
+  sayHello( <span class="hljs-meta">@PathParam</span>(<span class="hljs-string">'name'</span>) name: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.sayHello(name);
+  }
+}</code></pre>
+				<p>It is also possible to inform a custom serviceFactory to instantiate your services. To do this,
+				call <code>Server.registerServiceFactory()</code> instead of <code>Server.useIoC()</code> and provide your own ServiceFactory implementation.</p>
+				<p>You can also use the <code>serviceFactory</code> property in rest.config file to configure it:</p>
+				<pre><code class="language-json">{
+   <span class="hljs-attr">"serviceFactory"</span>: <span class="hljs-string">"./myServiceFactory"</span>
+}</code></pre>
+				<p>And export as default your serviceFactory class on <code>./myServiceFactory.ts</code> file.</p>
+				<p>It could be used to allow the usage of other libraries, like <a href="http://inversify.io/">Inversify</a>.</p>
+				<h3 id="inheritance-and-abstract-services">Inheritance and abstract services</h3>
+				<p>It is possible to extends services like you do with normal typescript classes:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">'users'</span>)
+<span class="hljs-keyword">class</span> Users{
+  <span class="hljs-meta">@GET</span>
+  getUsers() {
+    <span class="hljs-keyword">return</span> [];
+  }
+}
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">'superusers'</span>)
+<span class="hljs-keyword">class</span> SuperUsers{
+  <span class="hljs-meta">@GET</span>
+  <span class="hljs-meta">@Path</span>(<span class="hljs-string">'privilegies'</span>)
+  getPrivilegies() {
+    <span class="hljs-keyword">return</span> [];
+  }
+}</code></pre>
+				<p>It will expose the following endpoints:</p>
+				<ul>
+					<li><code>GET http://&lt;my-host&gt;/users</code></li>
+					<li><code>GET http://&lt;my-host&gt;/superusers</code></li>
+					<li><code>GET http://&lt;my-host&gt;/superusers/privilegies</code></li>
+				</ul>
+				<p><strong>A note about abstract classes</strong></p>
+				<p>A common scenario is to create an abstract class that contains some methods to be inherited by other concrete classes, like:</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> MyCrudService&lt;T&gt; {
+
+  <span class="hljs-meta">@GET</span>
+  <span class="hljs-meta">@Path</span>(<span class="hljs-string">':id'</span>)
+  <span class="hljs-keyword">abstract</span> getEntity(): <span class="hljs-built_in">Promise</span>&lt;T&gt;;
+}
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">'users'</span>)
+<span class="hljs-keyword">class</span> MyUserService&lt;User&gt; {
+
+  <span class="hljs-meta">@GET</span>
+  <span class="hljs-meta">@Path</span>(<span class="hljs-string">':id'</span>)
+  <span class="hljs-keyword">async</span> getEntity(): <span class="hljs-built_in">Promise</span>&lt;User&gt; {
+    <span class="hljs-keyword">return</span> myUser;
+  }
+}</code></pre>
+				<p>MyCrudService, in this scenario, is a service class that contains some exposed methods (methods that are declared to be exposed as endpoints). However, the intent here is not to expose the method for MyCrudService directly (I don&#39;t want an endpoint <code>GET http://&lt;myhost&gt;/123</code> exposed). We want that only its sublclasses have the methods exposed (<code>GET http://&lt;myhost&gt;/users/123</code>).</p>
+				<p>The fact that MyCrudService is an abstract class is not enough to typescript-rest library realize that its methods should not be exposed (Once it is compiled to javascript, it becomes a regular class). So you need to explicitly specify that this class should not expose any endpoint directly. It can be implemented using the <code>@Abstract</code> decorator:</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Abstract</span>
+<span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> MyCrudService&lt;T&gt; {
+
+  <span class="hljs-meta">@GET</span>
+  <span class="hljs-meta">@Path</span>(<span class="hljs-string">':id'</span>)
+  <span class="hljs-keyword">abstract</span> getEntity(): <span class="hljs-built_in">Promise</span>&lt;T&gt;;
+}
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">'users'</span>)
+<span class="hljs-keyword">class</span> MyUserService&lt;User&gt; {
+
+  <span class="hljs-meta">@GET</span>
+  <span class="hljs-meta">@Path</span>(<span class="hljs-string">':id'</span>)
+  <span class="hljs-keyword">async</span> getEntity(): <span class="hljs-built_in">Promise</span>&lt;User&gt; {
+    <span class="hljs-keyword">return</span> myUser;
+  }
+}</code></pre>
+				<p>Even if MyCrudService was not a typescript abstract class, if it is decorated with <code>@Abstract</code>, its methods will not be exposed as endpoints.</p>
+				<p>If you don&#39;t want to use <code>@Abstract</code>, another way to achieve the same goal is to specify which services you want to expose:</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">let</span> app: express.Application = express();
+Server.buildServices(app, MyUserService);</code></pre>
+				<p>or </p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">let</span> app: express.Application = express();
+Server.loadServices(apis, <span class="hljs-string">'lib/controllers/apis/impl/*'</span>);</code></pre>
+				<h3 id="preprocessors">Preprocessors</h3>
+				<p>It is possible to add a function to process the request before the handler on an endpoint by endpoint basis. This can be used to add a validator or authenticator to your application without including it in the body of the handler.</p>
+				<pre><code class="language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validator</span>(<span class="hljs-params">req: express.Request</span>): <span class="hljs-title">express</span>.<span class="hljs-title">Request</span> </span>{
+  <span class="hljs-keyword">if</span> (req.body.userId != <span class="hljs-literal">undefined</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Errors.BadRequestError(<span class="hljs-string">"userId not present"</span>);
+  } <span class="hljs-keyword">else</span> {
+    req.body.user = Users.get(req.body.userId)
+    <span class="hljs-keyword">return</span> req
+  }
+}
+
+<span class="hljs-meta">@Path</span>(<span class="hljs-string">'users'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UserHandler {
+
+  <span class="hljs-meta">@Path</span>(<span class="hljs-string">'email'</span>)
+  <span class="hljs-meta">@POST</span>
+  <span class="hljs-meta">@Preprocessor</span>(validator)
+  setEmail(body: <span class="hljs-built_in">any</span>) {
+    <span class="hljs-comment">// will have body.user</span>
+  }
+}</code></pre>
+				<p>Preprocessors can also be added to a class, applying it to all endpoints on the class</p>
+				<pre><code class="language-typescript"><span class="hljs-meta">@Path</span>(<span class="hljs-string">'users'</span>)
+<span class="hljs-meta">@Preprocessor</span>(validator)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UserHandler {
+
+  <span class="hljs-meta">@Path</span>(<span class="hljs-string">'email'</span>)
+  <span class="hljs-meta">@POST</span>
+  setEmail(body: <span class="hljs-built_in">any</span>) {
+    <span class="hljs-comment">// will have body.user</span>
+  }
+}</code></pre>
+				<h2 id="swagger">Swagger</h2>
+				<p>Typescript-rest can expose an endpoint with the <a href="http://swagger.io/">swagger</a> documentation for your API.</p>
+				<p>For example: </p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">let</span> app: express.Application = express();
+app.set(<span class="hljs-string">'env'</span>, <span class="hljs-string">'test'</span>);
+Server.buildServices(app);
+Server.swagger(app, <span class="hljs-string">'./test/data/swagger.yaml'</span>, <span class="hljs-string">'/api-docs'</span>, <span class="hljs-string">'localhost:5674'</span>, [<span class="hljs-string">'http'</span>]);</code></pre>
+				<p>You can provide your swagger file as an YAML or a JSON file.</p>
+				<p>Now, just access: </p>
+				<pre><code>http://localhost:5674/api-docs  // <span class="hljs-keyword">Show</span> the swagger UI <span class="hljs-keyword">to</span> <span class="hljs-keyword">allow</span> interaction <span class="hljs-keyword">with</span> the swagger <span class="hljs-keyword">file</span>
+<span class="hljs-keyword">http</span>://localhost:<span class="hljs-number">5674</span>/api-docs/<span class="hljs-keyword">json</span>  // <span class="hljs-keyword">Return</span> the swagger.json <span class="hljs-keyword">file</span>
+<span class="hljs-keyword">http</span>://localhost:<span class="hljs-number">5674</span>/api-docs/yaml  // <span class="hljs-keyword">Return</span> the swagger.yaml <span class="hljs-keyword">file</span></code></pre><p>If needed, you can provide options to customize the Swagger UI:</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> swaggerUiOptions = {
+  customSiteTitle: <span class="hljs-string">'My Awesome Docs'</span>,
+  swaggerOptions: {
+    validatorUrl: <span class="hljs-literal">null</span>,
+    oauth2RedirectUrl: <span class="hljs-string">'http://example.com/oauth2-redirect.html'</span>,
+    oauth: {
+      clientId: <span class="hljs-string">'my-default-client-id'</span>
+    }
+  }
+};
+Server.swagger(app, <span class="hljs-string">'./swagger.yaml'</span>, <span class="hljs-string">'/api-docs'</span>, <span class="hljs-literal">undefined</span>, [<span class="hljs-string">'http'</span>], swaggerUiOptions);</code></pre>
+				<blockquote>
+					<p>See <a href="https://github.com/scottie1984/swagger-ui-express"><code>swagger-ui-express</code></a> for more options and <a href="https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md"><code>swagger-ui</code></a> for more <code>swaggerOptions</code>. Note: Not all <code>swagger-ui</code> options are supported. Specifically, any options with a <code>Function</code> value will not work.</p>
+				</blockquote>
+				<p>To generate the swagger file, you can use the <a href="https://github.com/d0whc3r/typescript-rest-swagger">typescript-rest-swagger</a> tool.</p>
+				<pre><code class="language-sh">npm install typescript-rest-swagger -g
+`</code></pre>
+				<pre><code class="language-sh">swaggerGen -c ./swaggerConfig.json</code></pre>
+				<p><a href="https://github.com/d0whc3r/typescript-rest-swagger">typescript-rest-swagger</a> tool can generate a swagger file as an YAML or a JSON file.</p>
+				<h1 id="breaking-changes">Breaking Changes</h1>
+				<p>Starting from version 1.0.0, it is required to inform the body type on all ReferencedResources, like:</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">interface</span> NewObject {
+   id: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">class</span> TestService {
+     <span class="hljs-meta">@POST</span>
+    test(myObject: MyClass): Return.NewResource&lt;NewObject&gt; {
+        <span class="hljs-comment">//...</span>
+       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Return.NewResource&lt;NewObject&gt;(req.url + <span class="hljs-string">"/"</span> + generatedId, {id: generatedId}); <span class="hljs-comment">//Returns a JSON on body {id: generatedId}</span>
+     }
+  }</code></pre>
+				<p>Even when you do not provide a body on a ReferencedResouce, you need to inform <code>&lt;void&gt;</code></p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">class</span> TestService {
+     <span class="hljs-meta">@POST</span>
+    test(myObject: MyClass): Return.RequestAccepted&lt;<span class="hljs-built_in">void</span>&gt; {
+        <span class="hljs-comment">//...</span>
+       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Return.RequestAccepted&lt;<span class="hljs-built_in">void</span>&gt;(req.url + <span class="hljs-string">"/"</span> + generatedId);
+     }
+  }</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_decorators_.html">"decorators"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_metadata_.html">"metadata"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_server_.html">"server"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_server_container_.html">"server-<wbr>container"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_server_errors_.html">"server-<wbr>errors"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_server_return_.html">"server-<wbr>return"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_server_types_.html">"server-<wbr>types"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_typescript_rest_.html">"typescript-<wbr>rest"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
