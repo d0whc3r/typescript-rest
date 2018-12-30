@@ -107,10 +107,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/thiagobustamante/typescript-rest.git"
+    "url": "https://github.com/d0whc3r/typescript-rest.git"
   },
   "bugs": {
-    "url": "https://github.com/thiagobustamante/typescript-rest/issues"
+    "url": "https://github.com/d0whc3r/typescript-rest/issues"
   },
   "directories": {
     "lib": "dist",

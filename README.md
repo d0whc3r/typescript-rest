@@ -1,7 +1,7 @@
 [![npm version](https://badge.fury.io/js/typescript-rest.svg)](https://badge.fury.io/js/typescript-rest)
-[![Build Status](https://travis-ci.org/thiagobustamante/typescript-rest.svg?branch=master)](https://travis-ci.org/thiagobustamante/typescript-rest)
-[![Coverage Status](https://coveralls.io/repos/github/thiagobustamante/typescript-rest/badge.svg?branch=master)](https://coveralls.io/github/thiagobustamante/typescript-rest?branch=master)
-[![Known Vulnerabilities](https://snyk.io/test/github/thiagobustamante/typescript-rest/badge.svg?targetFile=package.json)](https://snyk.io/test/github/thiagobustamante/typescript-rest?targetFile=package.json)
+[![Build Status](https://travis-ci.org/d0whc3r/typescript-rest.svg?branch=master)](https://travis-ci.org/d0whc3r/typescript-rest)
+[![Coverage Status](https://coveralls.io/repos/github/d0whc3r/typescript-rest/badge.svg?branch=master)](https://coveralls.io/github/d0whc3r/typescript-rest?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/d0whc3r/typescript-rest/badge.svg?targetFile=package.json)](https://snyk.io/test/github/d0whc3r/typescript-rest?targetFile=package.json)
 
 # REST Services for Typescript
 This is a lightweight annotation-based [expressjs](http://expressjs.com/) extension for typescript.
@@ -931,7 +931,7 @@ class MyOwnError extends HttpError {
 }
 ```
 
-You must remember that all uncaught errors are handled by a expressjs [error handler](http://expressjs.com/en/guide/error-handling.html#the-default-error-handler). You could want to customize it to allow you to inform how the errors will be delivered to your users. For more on this (for those who wants, for example, to send JSON errors), take a look at [this question](https://github.com/thiagobustamante/typescript-rest/issues/16);
+You must remember that all uncaught errors are handled by a expressjs [error handler](http://expressjs.com/en/guide/error-handling.html#the-default-error-handler). You could want to customize it to allow you to inform how the errors will be delivered to your users. For more on this (for those who wants, for example, to send JSON errors), take a look at [this question](https://github.com/d0whc3r/typescript-rest/issues/16);
 
 ### BodyParser Options
 
@@ -1072,7 +1072,7 @@ class TestAcceptService {
 
 ### IoC
 
-It is possible to delegate to [typescript-ioc](https://github.com/thiagobustamante/typescript-ioc) the instantiation of the service objects.
+It is possible to delegate to [typescript-ioc](https://github.com/d0whc3r/typescript-ioc) the instantiation of the service objects.
 
 First, install typescript-ioc:
 
@@ -1274,7 +1274,7 @@ Server.swagger(app, './swagger.yaml', '/api-docs', undefined, ['http'], swaggerU
 
 > See [`swagger-ui-express`](https://github.com/scottie1984/swagger-ui-express) for more options and [`swagger-ui`](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md) for more `swaggerOptions`. Note: Not all `swagger-ui` options are supported. Specifically, any options with a `Function` value will not work.
 
-To generate the swagger file, you can use the [typescript-rest-swagger](https://github.com/thiagobustamante/typescript-rest-swagger) tool.
+To generate the swagger file, you can use the [typescript-rest-swagger](https://github.com/d0whc3r/typescript-rest-swagger) tool.
 
 ```sh
 npm install typescript-rest-swagger -g
@@ -1284,7 +1284,7 @@ npm install typescript-rest-swagger -g
 swaggerGen -c ./swaggerConfig.json
 ```
 
-[typescript-rest-swagger](https://github.com/thiagobustamante/typescript-rest-swagger) tool can generate a swagger file as an YAML or a JSON file.
+[typescript-rest-swagger](https://github.com/d0whc3r/typescript-rest-swagger) tool can generate a swagger file as an YAML or a JSON file.
 
 # Breaking Changes
 
